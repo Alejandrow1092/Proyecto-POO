@@ -39,3 +39,5 @@ insert into usuario values('axxx@hotmail.com', 'Andrea Morones', null, 'hola15',
 
 
 SELECT * FROM USUARIOS;
+
+Select * Ftom usuarios;
