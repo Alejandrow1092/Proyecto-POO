@@ -19,6 +19,8 @@ public class ServidorTw{
      String nombre="";
      String noTweets="";
      String noSeguidores="";
+     String noSeguidos="";
+     String foto="";
     
     public ServidorTw(){
         nuevaConexion=new ConexionDB();//se hace la conexion a la BD
@@ -29,7 +31,7 @@ public class ServidorTw{
             System.out.print("Fallo la conexión a MYSQL");
         }
         
-        datosInicio=new ArrayList<String>();
+        //datosInicio=new ArrayList<String>();
     }//cierra constructor
     
     public class ClientHandler implements Runnable{
@@ -137,7 +139,7 @@ public class ServidorTw{
                    if(contra.equals(contrasena)){ 
                         //traigo los datos para cargar la pantalla principal
                         nuevaConexion.conjuntoResultados=nuevaConexion.instruccion.executeQuery(
-                        "SELECT Nombre, foto, NoTweets, NoSeguidores FROM usuario where correoE='"+usuario+"'");
+                        "SELECT Nombre, foto, NoTweets, NoSeguidores, NoSeguidos FROM usuario where correoE='"+usuario+"'");
                         
                        /* nuevaConexion.metaDatos=nuevaConexion.conjuntoResultados.getMetaData();
                         int numeroColumnas=nuevaConexion.metaDatos.getColumnCount();
@@ -198,15 +200,20 @@ public class ServidorTw{
         while(nuevaConexion1.conjuntoResultados.next()){
             
             nombre=nuevaConexion1.conjuntoResultados.getString("Nombre");
+            foto=nuevaConexion1.conjuntoResultados.getString("Foto");
             noTweets=Integer.toString(nuevaConexion1.conjuntoResultados.getInt("NoTweets"));
             noSeguidores=Integer.toString(nuevaConexion1.conjuntoResultados.getInt("NoSeguidores"));
-            //foto agregar
+            noSeguidos=Integer.toString(nuevaConexion1.conjuntoResultados.getInt("NoSeguidos"));
+           
         }
-                        
+        datosInicio=new ArrayList<String>();               
     //agrego los datos de inicio al arreglo
         datosInicio.add(nombre);
+        System.out.println(""+nombre);
+        datosInicio.add(foto);
         datosInicio.add(noTweets);
         datosInicio.add(noSeguidores);
+        datosInicio.add(noSeguidos);
                        
         System.out.println("Se le esta enviando el arreglo");                
 

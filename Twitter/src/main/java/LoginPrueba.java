@@ -19,12 +19,20 @@ public class LoginPrueba{
 
     Scanner teclado;
     int numeroPregunta;
+    
+    PaginaUsuario user;
 
     
 
     public LoginPrueba(){
         arrCliente=new ArrayList<String>();
+        arrCliente.add("1");
+        arrCliente.add("andrea@hotmail.com");
+       // arr.add("Alejandro Martinez");
+        arrCliente.add("hola15");
+        
         respuesta=new ArrayList<String>();
+        
     }
     
     void conecta(){
@@ -70,7 +78,11 @@ public class LoginPrueba{
                 System.out.println("Espero larespuesta");
                 obj1=entrada.readObject();
                 respuesta=(ArrayList)obj1;
-                System.out.println("Me contesto: ");
+                System.out.println("Me contesto: "+ respuesta.get(0));
+                
+                
+                user=new PaginaUsuario(arrCliente.get(1), respuesta);
+            
             }
             catch(ClassNotFoundException exceptionClaseNoEncontrada){
                 //System.out.println("caca");
@@ -79,17 +91,13 @@ public class LoginPrueba{
 
     }
 
-  /* void elegirPregunta(){
-        System.out.println("Ingresa un numero de pregunta: ");
-        numeroPregunta=teclado.nextInt();
-        enviarDatos(numeroPregunta);
-    }*/
+ 
 
     public void enviarDatos(ArrayList arr){
-        arr.add("2");
-        arr.add("alex@hotmail.com");
-        arr.add("Alejandro Martinez");
-        arr.add("hola15");
+       // arr.add("1");
+        //arr.add("amrkratos@hotmail.com");
+       // arr.add("Alejandro Martinez");
+       // arr.add("hola1");
         
         try{
             salida.writeObject(arr);

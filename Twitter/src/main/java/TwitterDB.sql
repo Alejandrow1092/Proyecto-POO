@@ -5,10 +5,11 @@ USE TWITTER;
 CREATE TABLE usuario(
 	correoE varchar(200) Primary Key Not null,
 	Nombre varchar(200),
-	foto varbinary(1000),
+	foto varchar(100),
 	contrasena varchar(100),
 	NoTweets int,
-	NoSeguidores int
+	NoSeguidores int,
+        NoSeguidos int
 );
 
 CREATE TABLE tweet(
@@ -40,4 +41,20 @@ insert into usuario values('axxx@hotmail.com', 'Andrea Morones', null, 'hola15',
 
 SELECT * FROM USUARIOS;
 
-Select * Ftom usuarios;
+--Añadir una nueva columna después de otra:
+	
+--ALTER TABLE nombre_tabla ADD nombre_columna VARCHAR(5) AFTER nombre_columna_anterior;
+
+ALTER TABLE usuario ADD NoSeguidos int AFTER Noseguidores;
+
+--cambiar el valor nulo por un entero
+
+--Solamente cambiar el tipo de dato de una columna:
+
+--ALTER TABLE nombre_tabla MODIFY nombre_columna DATE NOT NULL;
+
+ALTER TABLE usuario MODIFY Foto varchar(100);
+
+--Cambiar el valor de toda una columna
+
+UPDATE usuario SET NoSeguidos=0;
