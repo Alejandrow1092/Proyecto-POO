@@ -33,12 +33,12 @@ public class Cliente {
         }
     }
     
-    public void conectaServidor() throws  UnknownHostException, IOException{
+    private void conectaServidor() throws  UnknownHostException, IOException{
         cliente= new Socket("localhost", 5000);
      //   System.out.println("Conecto con el servidor");
     }
 
-    public void estableceFlujos() throws IOException{
+    private void estableceFlujos() throws IOException{
      //   System.out.println("holi34");
 
         salida= new ObjectOutputStream(cliente.getOutputStream());
@@ -69,7 +69,7 @@ public class Cliente {
             return obj1;
     }
     
-     public void enviarDatos(ArrayList arr){       
+     private void enviarDatos(ArrayList arr){       
        try{
             salida.writeObject(arr);
             salida.flush();

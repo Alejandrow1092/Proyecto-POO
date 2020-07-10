@@ -4,8 +4,10 @@ import javax.swing.*;
 
 
 public class PaginaUsuario extends javax.swing.JFrame {
-    ArrayList <String> datosUsuario;
-    ArrayList <String> datosTweet;
+    ArrayList <String> datosUsuario;//obtiene los datos del usuario 
+    ArrayList <String> datosTweet;//llevara los datos del tweet
+    
+    FrameUsuario nuevo;//frame para la pnatilla del tweet
     
     String idUsuario="";
     ImageIcon fotoUsuario;
@@ -43,6 +45,7 @@ public class PaginaUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         textArea1 = new java.awt.TextArea();
+        uwu = new javax.swing.JPanel();
         jPencabezado = new javax.swing.JPanel();
         jBatras = new javax.swing.JButton();
         jLNombre = new javax.swing.JLabel();
@@ -55,6 +58,22 @@ public class PaginaUsuario extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tweetArea = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout uwuLayout = new javax.swing.GroupLayout(uwu);
+        uwu.setLayout(uwuLayout);
+        uwuLayout.setHorizontalGroup(
+            uwuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        uwuLayout.setVerticalGroup(
+            uwuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 252, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +158,64 @@ public class PaginaUsuario extends javax.swing.JFrame {
             }
         });
 
+        tweetArea.setBackground(new java.awt.Color(20, 31, 39));
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel2.setText("¿Que tienes en mente?");
+
+        jButton1.setText("Twittear");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(116, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap())))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
+        );
+
+        javax.swing.GroupLayout tweetAreaLayout = new javax.swing.GroupLayout(tweetArea);
+        tweetArea.setLayout(tweetAreaLayout);
+        tweetAreaLayout.setHorizontalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        tweetAreaLayout.setVerticalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tweetAreaLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(298, Short.MAX_VALUE))
+        );
+
+        jScrollPane1.setViewportView(tweetArea);
+
         javax.swing.GroupLayout jPcentroLayout = new javax.swing.GroupLayout(jPcentro);
         jPcentro.setLayout(jPcentroLayout);
         jPcentroLayout.setHorizontalGroup(
@@ -156,6 +233,7 @@ public class PaginaUsuario extends javax.swing.JFrame {
             .addGroup(jPcentroLayout.createSequentialGroup()
                 .addComponent(jButton3)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPcentroLayout.setVerticalGroup(
             jPcentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,23 +247,10 @@ public class PaginaUsuario extends javax.swing.JFrame {
                     .addComponent(jBsiguiendo)
                     .addComponent(jBseguidores))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton3))
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        tweetArea.setBackground(new java.awt.Color(20, 31, 39));
-
-        javax.swing.GroupLayout tweetAreaLayout = new javax.swing.GroupLayout(tweetArea);
-        tweetArea.setLayout(tweetAreaLayout);
-        tweetAreaLayout.setHorizontalGroup(
-            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
-        );
-        tweetAreaLayout.setVerticalGroup(
-            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 377, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(tweetArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,7 +258,6 @@ public class PaginaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPencabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPcentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,8 +265,7 @@ public class PaginaUsuario extends javax.swing.JFrame {
                 .addComponent(jPencabezado, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(jPcentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,9 +304,24 @@ public class PaginaUsuario extends javax.swing.JFrame {
     }*/
     
     public void cargaTweets(){
+        Object obj1;
+        
         datosTweet=new ArrayList <String>();
         datosTweet.add("6");
         datosTweet.add(""+idUsuario);
+        
+        datosTweet=(ArrayList)con.envia(datosTweet);
+        
+        datosTweet.add(datosUsuario.get(0));
+        datosTweet.add(datosUsuario.get(1));
+       
+        
+        nuevo=new FrameUsuario(2);
+        
+        obj1=nuevo.userTemplant(datosTweet);
+        
+        JPanel agrega=(JPanel)obj1;
+        tweetArea.add(agrega);
     }
     
     public class conexionCliente extends Cliente{
@@ -282,15 +360,21 @@ public class PaginaUsuario extends javax.swing.JFrame {
     public javax.swing.JButton jBatras;
     private javax.swing.JButton jBseguidores;
     private javax.swing.JButton jBsiguiendo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLNoTweets;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLNombre1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPcentro;
     public javax.swing.JPanel jPencabezado;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private java.awt.TextArea textArea1;
     private javax.swing.JPanel tweetArea;
+    private javax.swing.JPanel uwu;
     // End of variables declaration//GEN-END:variables
 }

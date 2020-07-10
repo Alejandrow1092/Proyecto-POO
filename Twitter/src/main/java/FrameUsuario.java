@@ -8,12 +8,13 @@ public class FrameUsuario extends JFrame{
      public javax.swing.JPanel cola;
      ImageIcon foto;
      Icon icon;
+     int opcion;
   
-    public FrameUsuario() {
+    public FrameUsuario(int opcion) {
+        this.opcion=opcion;
         initComponents();
         data=new ArrayList<String>();
        
-    
     }
 
    
@@ -25,11 +26,12 @@ public class FrameUsuario extends JFrame{
         jLfoto = new javax.swing.JLabel();
         jLuserName = new javax.swing.JLabel();
         jBseguir = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        tweetArea = new javax.swing.JPanel();
+        jLfotoTweet = new javax.swing.JLabel();
+        jLnombreTweet = new javax.swing.JLabel();
+        jLfecha = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        panel = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,52 +72,53 @@ public class FrameUsuario extends JFrame{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(20, 31, 39));
+        tweetArea.setBackground(new java.awt.Color(20, 31, 39));
 
-        jLabel1.setText("jLabel1");
+        jLfotoTweet.setText("jLfoto");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel2.setText("ALEJANDRO MARTINEZ");
+        jLnombreTweet.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLnombreTweet.setForeground(new java.awt.Color(240, 240, 240));
+        jLnombreTweet.setText("ALEJANDRO MARTINEZ");
 
-        jLabel3.setForeground(new java.awt.Color(144, 151, 229));
-        jLabel3.setText("FECHA");
+        jLfecha.setForeground(new java.awt.Color(144, 151, 229));
+        jLfecha.setText("FECHA");
 
-        jLabel4.setText("jLabel4");
+        panel.setBackground(new java.awt.Color(20, 31, 39));
+        panel.setForeground(new java.awt.Color(240, 240, 240));
+        jScrollPane1.setViewportView(panel);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout tweetAreaLayout = new javax.swing.GroupLayout(tweetArea);
+        tweetArea.setLayout(tweetAreaLayout);
+        tweetAreaLayout.setHorizontalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tweetAreaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tweetAreaLayout.createSequentialGroup()
+                        .addComponent(jLfotoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tweetAreaLayout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(jLabel2)
+                        .addComponent(jLnombreTweet)
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        tweetAreaLayout.setVerticalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tweetAreaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLnombreTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addGroup(tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tweetAreaLayout.createSequentialGroup()
+                        .addComponent(jLfotoTweet, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 26, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,14 +126,14 @@ public class FrameUsuario extends JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(userPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tweetArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(userPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tweetArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 415, Short.MAX_VALUE))
         );
 
@@ -138,31 +141,52 @@ public class FrameUsuario extends JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     public Object userTemplant(Object datos){
-        data=(ArrayList)datos;
-        foto=new ImageIcon(""+data.get(2));
-        icon = new ImageIcon(foto.getImage().getScaledInstance(jLfoto.getWidth(), jLfoto.getHeight(), Image.SCALE_DEFAULT));
-        
-        
-        Object obj;
-        cola=new JPanel();
-        cola=userPanel; 
-        
-        jLuserName.setText(data.get(1));
-        jLfoto.setIcon(icon);
-        
-        obj=cola;
+        Object obj=null;
+        if(opcion==1){
+            data=(ArrayList)datos;
+            foto=new ImageIcon(""+data.get(2));
+            icon = new ImageIcon(foto.getImage().getScaledInstance(jLfoto.getWidth(), jLfoto.getHeight(), Image.SCALE_DEFAULT));
+
+
+            
+            cola=new JPanel();
+            cola=userPanel;//user panel es el panel que lleva la plantilla de usuario 
+
+            jLuserName.setText(data.get(1));
+            jLfoto.setIcon(icon);
+
+            obj=cola;
+            
+        }
+        if(opcion==2){
+            data=(ArrayList)datos;
+            
+             foto=new ImageIcon(data.get(3));
+            icon = new ImageIcon(foto.getImage().getScaledInstance(jLfoto.getWidth(), jLfoto.getHeight(), Image.SCALE_DEFAULT));
+            
+            cola=new JPanel();
+            cola=tweetArea;//user panel es el panel que lleva la plantilla de usuario 
+            
+           // jLtexto.setText(data.get(1));
+           panel.setText(data.get(1));
+           jLfecha.setText(data.get(0));
+            jLnombreTweet.setText(data.get(2));
+            jLfotoTweet.setIcon(icon);
+            obj=cola;
+        }
         return obj;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBseguir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLfecha;
     private javax.swing.JLabel jLfoto;
+    private javax.swing.JLabel jLfotoTweet;
+    private javax.swing.JLabel jLnombreTweet;
     private javax.swing.JLabel jLuserName;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextPane panel;
+    private javax.swing.JPanel tweetArea;
     private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
 }

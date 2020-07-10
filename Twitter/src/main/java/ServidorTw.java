@@ -244,7 +244,26 @@ public class ServidorTw{
            }
            System.out.println("Ya le mande los datos");
        }
-       
+       if(i==6){
+           
+           System.out.println("Llego al 6");
+            seguidores=new ArrayList <String>();
+           try {
+               nuevaConexion.instruccion=nuevaConexion.conexion.createStatement();
+               nuevaConexion.conjuntoResultados=nuevaConexion.instruccion.executeQuery(
+              "SELECT Fecha, Texto FROM tweet WHERE usuario1='"+arrCliente.get(1)+"'");
+               
+               nuevaConexion.conjuntoResultados.next();
+               
+                seguidores.add(nuevaConexion.conjuntoResultados.getString("fecha"));
+                seguidores.add(nuevaConexion.conjuntoResultados.getString("texto"));
+                writerp.writeObject(seguidores);
+                writerp.flush();
+           } catch (Exception e) {
+               System.out.println("Exception del apratado 6"+e);
+           }
+               
+       }
         
         
     }

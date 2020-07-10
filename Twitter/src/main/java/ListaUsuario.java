@@ -185,7 +185,7 @@ public class ListaUsuario extends javax.swing.JFrame{
         
         Iterator it =seguidores.iterator();
         while(it.hasNext()){
-            nuevo=new FrameUsuario();
+            nuevo=new FrameUsuario(1);
             nombreSeguidor=(String)it.next();//obtengo el correE2
             
             //JPanel panel=new JPanel();
