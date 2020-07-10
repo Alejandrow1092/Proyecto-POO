@@ -1,6 +1,3 @@
-import java.awt.*;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 import java.net.*;
@@ -8,35 +5,18 @@ import java.io.*;
 import java.net.UnknownHostException;
 import java.util.*;
 
-public class LoginPrueba{
-    ArrayList<String> preguntas;
-    ArrayList<String> arrCliente;
-    ArrayList <String> respuesta;
-    
+public class Cliente {
     Socket cliente;//Socket
     ObjectOutputStream salida;//variables de los flujos
     ObjectInputStream entrada;
-
-    Scanner teclado;
-    int numeroPregunta;
     
-    PaginaUsuario user;
-
+    ArrayList <String> respuesta;
     
-
-    public LoginPrueba(){
-    //    arrCliente=new ArrayList<String>();
-    //    arrCliente.add("1");
-    //    arrCliente.add("lennon@hotmail.com");
-       // arr.add("Alejandro Martinez");
-    //    arrCliente.add("hola20");
-        
-        respuesta=new ArrayList<String>();
-        
+    public Cliente(){
+        respuesta=new ArrayList <String>();
     }
     
     void conecta(){
-        
         try{
             conectaServidor();
            
@@ -52,7 +32,7 @@ public class LoginPrueba{
             exceptionES.printStackTrace();
         }
     }
-
+    
     public void conectaServidor() throws  UnknownHostException, IOException{
         cliente= new Socket("localhost", 5000);
      //   System.out.println("Conecto con el servidor");
@@ -68,14 +48,12 @@ public class LoginPrueba{
        // System.out.println("Establecio flujos");
     
     }
-
+    
     public Object manejaConexion(ArrayList arr)throws IOException{
-        Object obj1=null;
-       // System.out.println("Casi elijo pregunta");
-     //   do{
+            Object obj1=null;
             enviarDatos(arr);
             try{
-                System.out.println("Espero larespuesta");
+                System.out.println("Espero la respuesta");
                 obj1=entrada.readObject();
                 respuesta=(ArrayList)obj1;
                 System.out.println("Me contesto: "+ respuesta.get(0));
@@ -85,21 +63,14 @@ public class LoginPrueba{
             
             }
             catch(ClassNotFoundException exceptionClaseNoEncontrada){
-                //System.out.println("caca");
+                System.out.println("Error "+exceptionClaseNoEncontrada);
             }
-       // }while(true);
+       
             return obj1;
     }
-
- 
-
-    public void enviarDatos(ArrayList arr){
-       // arr.add("1");
-        //arr.add("amrkratos@hotmail.com");
-       // arr.add("Alejandro Martinez");
-       // arr.add("hola1");
-        
-        try{
+    
+     public void enviarDatos(ArrayList arr){       
+       try{
             salida.writeObject(arr);
             salida.flush();
             System.out.println("Al servidor se le envio el arreglo ");
@@ -109,11 +80,7 @@ public class LoginPrueba{
         }
     }
     
-    
-   /* public static void main (String args[]){
-        LoginPrueba hola1 = new LoginPrueba();
-        hola1.conecta();    
-    }*/
-
-
+   // public static void main(String args[]){
+        
+    //}
 }

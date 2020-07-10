@@ -11,6 +11,7 @@ public class ServidorTw{
     ArrayList<ObjectOutputStream> clientObjectOutputStreams;//arreglo donde se guarda el flujo de salida de los clientes
     
     ArrayList <String> datosInicio;
+    ArrayList <String> seguidores;
     
     final String notFound="Usuario no encontrado";
     final String wrongPwd="Contraseña equivocada";
@@ -184,12 +185,66 @@ public class ServidorTw{
            
        }
        
-       //se esta accediendo a una pantalla principal, se regresan
-       //los datos del usuario para que se arme la pagina del cliente  
+       //se requiere la tabla de seguidores
        if(i==3){
-                  
+           String primarykey=arrCliente.get(1);//recibo nombre de usuario
+           seguidores=new ArrayList <String>();
+           try {
+               nuevaConexion.instruccion=nuevaConexion.conexion.createStatement();
+               nuevaConexion.conjuntoResultados=nuevaConexion.instruccion.executeQuery(
+                        "SELECT correoE2 FROM seguidor WHERE correoE1='"+primarykey+"'");
+               
+               while(nuevaConexion.conjuntoResultados.next()){
+                   seguidores.add(nuevaConexion.conjuntoResultados.getString("correoE2"));
+                   
+               }
+                writerp.writeObject(seguidores);
+                writerp.flush();
+           } catch (Exception e) {
+               System.out.println("Error "+e);
+           }
+           
+           
+           
            
        }
+       //se esta accediendo a una pantalla principal, se regresan
+       //los datos del usuario para que se arme la pagina del cliente  
+       if(i==4){
+           String primarykey=arrCliente.get(1);//recibo nombre de usuario
+           seguidores=new ArrayList <String>();
+           try {
+               nuevaConexion.instruccion=nuevaConexion.conexion.createStatement();
+               nuevaConexion.conjuntoResultados=nuevaConexion.instruccion.executeQuery(
+                        "SELECT Nombre, Foto FROM usuario WHERE correoE='"+primarykey+"'");
+               
+               while(nuevaConexion.conjuntoResultados.next()){
+                   seguidores.add("5");
+                   seguidores.add(nuevaConexion.conjuntoResultados.getString("Nombre"));
+                   seguidores.add(nuevaConexion.conjuntoResultados.getString("Foto"));
+                   
+               }
+                writerp.writeObject(seguidores);
+                writerp.flush();
+           } catch (Exception e) {
+               System.out.println("Error "+e);
+           }
+       }
+       if(i==5){
+           try {
+               
+               System.out.println("llego al 5");
+               nuevaConexion.instruccion=nuevaConexion.conexion.createStatement();        
+           nuevaConexion.conjuntoResultados=nuevaConexion.instruccion.executeQuery(
+                        "SELECT Nombre, foto, NoTweets, NoSeguidores, NoSeguidos FROM usuario where correoE='"+arrCliente.get(1)+"'");
+                 infoUsuario(nuevaConexion, writerp);
+           
+           } catch (Exception e) {
+               System.out.println("Error "+e);
+           }
+           System.out.println("Ya le mande los datos");
+       }
+       
         
         
     }
@@ -200,6 +255,7 @@ public class ServidorTw{
         while(nuevaConexion1.conjuntoResultados.next()){
             
             nombre=nuevaConexion1.conjuntoResultados.getString("Nombre");
+            System.out.println("el nombre es: "+nombre);
             foto=nuevaConexion1.conjuntoResultados.getString("Foto");
             noTweets=Integer.toString(nuevaConexion1.conjuntoResultados.getInt("NoTweets"));
             noSeguidores=Integer.toString(nuevaConexion1.conjuntoResultados.getInt("NoSeguidores"));
@@ -209,7 +265,7 @@ public class ServidorTw{
         datosInicio=new ArrayList<String>();               
     //agrego los datos de inicio al arreglo
         datosInicio.add(nombre);
-        System.out.println(""+nombre);
+        System.out.println("que paso?"+datosInicio.get(0));
         datosInicio.add(foto);
         datosInicio.add(noTweets);
         datosInicio.add(noSeguidores);

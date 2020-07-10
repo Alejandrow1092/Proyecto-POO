@@ -5,18 +5,19 @@ import javax.swing.*;
 
 public class PaginaUsuario extends javax.swing.JFrame {
     ArrayList <String> datosUsuario;
+    ArrayList <String> datosTweet;
+    
     String idUsuario="";
     ImageIcon fotoUsuario;
     Icon icon;
-    /**
-     * Creates new form PaginaUsuario
-     */
+   conexionCliente con;//conexion con el cliente para pedir los tweets
+    
     public PaginaUsuario(String usuario, Object datos) {
     
     //  public PaginaUsuario(String usuario) {
         super("Twitter");
         System.out.println("llegada exitosa");
-        
+        con=new conexionCliente();
         this.idUsuario=usuario;
         datosUsuario=(ArrayList)datos;
         //icon = new ImageIcon(fotoUsuario.getImage().getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(), Image.SCALE_DEFAULT));
@@ -24,7 +25,10 @@ public class PaginaUsuario extends javax.swing.JFrame {
         fotoUsuario=new ImageIcon(""+datosUsuario.get(1));
         
         initComponents();
+        
         defineComponents();//le da los valores a los componentos graficos de la BD
+        
+        cargaTweets();
         
         setVisible(true);
     }
@@ -49,7 +53,8 @@ public class PaginaUsuario extends javax.swing.JFrame {
         jBsiguiendo = new javax.swing.JButton();
         jBseguidores = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tweetArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,7 +89,7 @@ public class PaginaUsuario extends javax.swing.JFrame {
                     .addGroup(jPencabezadoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLNombre)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPencabezadoLayout.setVerticalGroup(
             jPencabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,18 +172,20 @@ public class PaginaUsuario extends javax.swing.JFrame {
                 .addComponent(jButton3))
         );
 
-        jPanel1.setBackground(new java.awt.Color(20, 31, 39));
+        tweetArea.setBackground(new java.awt.Color(20, 31, 39));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout tweetAreaLayout = new javax.swing.GroupLayout(tweetArea);
+        tweetArea.setLayout(tweetAreaLayout);
+        tweetAreaLayout.setHorizontalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+        tweetAreaLayout.setVerticalGroup(
+            tweetAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
+
+        jScrollPane1.setViewportView(tweetArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,7 +193,7 @@ public class PaginaUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPencabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPcentro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,18 +202,30 @@ public class PaginaUsuario extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jPcentro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBseguidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBseguidoresActionPerformed
-        new ListaUsuario().setVisible(true);
+        try {
+            new ListaUsuario(idUsuario).setVisible(true);
+            setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error "+e);
+        }
+       
     }//GEN-LAST:event_jBseguidoresActionPerformed
 
     private void jBsiguiendoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsiguiendoActionPerformed
-         new ListaUsuario().setVisible(true);
+       try {
+            new ListaUsuario(idUsuario).setVisible(true);
+            setVisible(false);
+        } catch (Exception e) {
+            System.out.println("Error "+e);
+        }
+        
     }//GEN-LAST:event_jBsiguiendoActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -216,40 +235,33 @@ public class PaginaUsuario extends javax.swing.JFrame {
     private void jBatrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatrasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBatrasActionPerformed
-
-    
-    /*public static void main(String args[]) {
-       
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaginaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaginaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaginaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PaginaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-       
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PaginaUsuario().setVisible(true);
-            }
-        });
-    }*/
     
    /* public static void main(String args[]){
         new PaginaUsuario("Andrea", );
     }*/
     
+    public void cargaTweets(){
+        datosTweet=new ArrayList <String>();
+        datosTweet.add("6");
+        datosTweet.add(""+idUsuario);
+    }
+    
+    public class conexionCliente extends Cliente{
+        Cliente client;
+        conexionCliente(){
+            client=new Cliente();
+            client.conecta();
+        }
+        public Object envia(ArrayList datos){
+            Object obj2=null;
+            try {
+                 obj2=client.manejaConexion(datos);
+            } catch (Exception e) {
+                System.out.println("Error"+e);
+            }
+           return obj2;
+        }
+    }
     
     public void defineComponents(){
         
@@ -275,9 +287,10 @@ public class PaginaUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLNombre1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPcentro;
     public javax.swing.JPanel jPencabezado;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.TextArea textArea1;
+    private javax.swing.JPanel tweetArea;
     // End of variables declaration//GEN-END:variables
 }

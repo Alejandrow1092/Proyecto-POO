@@ -12,10 +12,17 @@ CREATE TABLE usuario(
         NoSeguidos int
 );
 
+insert into tweet values('09/07/2020', 'amrkratos@hotmail.com', 1, 
+'Cuando plantaste flores en mi pense que ibas a regarlas a diario.
+Todas Mutieron.');
+
+insert into tweet values('2020/07/09', 'lennon@hotmail.com', 1, 
+'i would like to stay singing with all of you');
 CREATE TABLE tweet(
     Fecha date,
     Usuario1 varchar (200),
     NoTweet int,
+    Texto varchar(160);
     primary key(Usuario1, NoTweet),
     foreign key (Usuario1) references usuario(correoE)
 );
@@ -58,3 +65,12 @@ ALTER TABLE usuario MODIFY Foto varchar(100);
 --Cambiar el valor de toda una columna
 
 UPDATE usuario SET NoSeguidos=0;
+
+Delete from seguidor where correoE2='amrkratos@hotmail.com';
+(SELECT correoE FROM seguidor where correoE='amrkratos@hotmail.com')
+ INTERSECT 
+(SELECT usuario1 FROM tweet where usuario1='amrkratos@hotmail.com');
+
+SELECT * FROM seguidor where correoE1='amrkratos@hotmail.com'
+inner join tweet
+on seguidor.correoE1=tweet.usuario1;
